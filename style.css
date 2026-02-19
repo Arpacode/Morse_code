@@ -1,0 +1,77 @@
+body {
+  font-family: "Consolas", monospace;
+  background: #0d1117;
+  color: #e6edf3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: #161b22;
+  padding: 25px;
+  border-radius: 15px;
+  position: absolute;
+  left: 10px;
+  top: 50px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  color: pink;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+
+.display {
+  background: blue;
+  border: 1px solid red;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.output {
+  font-size: 1.3rem;
+  color: greenyellow;
+  margin-bottom: 10px;
+  min-height: 24px;
+}
+
+.current-symbol {
+  font-size: 1rem;
+  color: #c9d1d9;
+}
+
+#key {
+  background: whitesmoke;
+  color: black;
+  border: none;
+  padding: 20px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+  position: absolute;
+  top: 300px;
+  left: 100px;
+}
+
+#key:active {
+  transform: scale(0.95);
+  background: red;
+}
+
+.info {
+  margin-top: 15px;
+  color: #8b949e;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  position: absolute;
+  left: 50px;
+  top: 400px;
+}
