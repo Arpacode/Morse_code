@@ -2,12 +2,13 @@ const key = document.getElementById("key");
 const symbolDisplay = document.getElementById("symbol");
 const decodedDisplay = document.getElementById("decoded");
 
-let pressStartTime = 0;
-let morseSequence = "";
-let decodedText = "";
+let state = 0;
+let sequence = "";
+let texto = "";
 let timeout = null;
 
-// Morse dictionary
+
+// Morse dictionary #credit : REDDIT
 const morseMap = {
   ".-":"A","-...":"B","-.-.":"C","-..":"D",".":"E",
   "..-.":"F","--.":"G","....":"H","..":"I",".---":"J",
@@ -20,43 +21,55 @@ const morseMap = {
   "---..":"8","----.":"9"
 };
 
-// Detect touch device
+// Detect touching
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-const startEvent = isTouchDevice ? "touchstart" : "mousedown";
-const endEvent = isTouchDevice ? "touchend" : "mouseup";
+const startEvent = isTouchDevice? "touchstart" : "mousedown";
+const endEvent = isTouchDevice? "touchend" : "mouseup";
 
-// Start press
+// Start listening
 key.addEventListener(startEvent, (e) => {
   e.preventDefault();
-  pressStartTime = Date.now();
+  state = Date.now();
   key.style.background = "red";
+
   clearTimeout(timeout);
+  console.log("down", state);
 });
 
-// End press
+//figuring out dot vs dash
 key.addEventListener(endEvent, (e) => {
   e.preventDefault();
-  const pressDuration = Date.now() - pressStartTime;
+  const pressDuration = Date.now() - state; //duration
+  console.log(pressDuration);
+
   key.style.background = "whitesmoke";
 
-  if (pressDuration < 300) morseSequence += ".";
-  else morseSequence += "-";
 
-  symbolDisplay.textContent = morseSequence;
+  
+  if (pressDuration < 300) {
+    sequence += "."; // short = dot
+  } else {
+    sequence += "-"; // long = dash
+  }
+  symbolDisplay.textContent = sequence;
+  console.log(sequence)
 
+
+  
   clearTimeout(timeout);
   timeout = setTimeout(() => {
-    decodeMorse(morseSequence);
-    morseSequence = "";
-  }, 1000);
+    decodeMorse(sequence);
+    sequence = "";
+    symbolDisplay.textContent = "";
+  }, 1000); // 1000ms = 1 sec
 });
 
 // Decode Morse
 function decodeMorse(symbols) {
-  if (!symbols) return;
+  if (!symbols) return; 
   const letter = morseMap[symbols] || "?";
-  decodedText += letter;
-  decodedDisplay.textContent = decodedText;
+  texto += letter;
+  decodedDisplay.textContent = texto;
   symbolDisplay.textContent = "";
 }

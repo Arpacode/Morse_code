@@ -1,35 +1,71 @@
 body {
-  font-family: "Consolas", monospace;
-  background: #0d1117;
-  color: #e6edf3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: Consolas, monospace;
 }
 
 .container {
-  background: #161b22;
-  padding: 25px;
-  border-radius: 15px;
-  position: absolute;
-  left: 10px;
-  top: 50px;
-  width: 90%;
-  max-width: 420px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    width: min(90vw, 500px);
+
+    background: #161b22;
+    border-radius: 15px;
+    padding: 25px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
 }
 
-h1 {
-  color: pink;
-  margin-bottom: 20px;
-  letter-spacing: 3px;
+
+#key {
+    width: 100%;
+    padding: 20px;
+
+    font-size: clamp(1rem, 3vw, 1.4rem);
+
+    border: none;
+    border-radius: 50px;
+
+    cursor: pointer;
 }
+
+h1{
+    font-size: clamp(1.8rem,5vw,2.6rem);
+    color:#c865f6;
+}
+
+.output{
+    font-size: clamp(1.2rem,4vw,2rem);
+}
+
+.current-symbol{
+    font-size: clamp(1rem,3vw,1.4rem);
+}
+
+
+.info{
+    color:#8b949e;
+    line-height:1.6;
+}
+
+
+a{
+  color:#51b530 ;
+}
+
 
 .display {
   background: blue;
-  border: 1px solid red;
+  border: 1px solid #9bff7a;
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 20px;
@@ -47,31 +83,13 @@ h1 {
   color: #c9d1d9;
 }
 
-#key {
-  background: whitesmoke;
-  color: black;
-  border: none;
-  padding: 20px 40px;
-  font-size: 1.2rem;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: transform 0.1s, background 0.2s;
-  position: absolute;
-  top: 300px;
-  left: 100px;
+*{
+    box-sizing:border-box;
 }
+
 
 #key:active {
   transform: scale(0.95);
   background: red;
 }
 
-.info {
-  margin-top: 15px;
-  color: #8b949e;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  position: absolute;
-  left: 50px;
-  top: 400px;
-}
